@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "694185216444",
+    "firebase_url": "https://sgchat-5f074.firebaseio.com",
+    "project_id": "sgchat-5f074",
+    "storage_bucket": "sgchat-5f074.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694185216444:android:b1842c5a1521cdb7",
+        "android_client_info": {
+          "package_name": "com.example.sanjiv.sgchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694185216444-g0ufq9mqmioe28dul9vl37l8o527lgcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sanjiv.sgchat",
+            "certificate_hash": "c5776798d80d2a58d57e9ae11fc54e6032f9c420"
+          }
+        },
+        {
+          "client_id": "694185216444-21q693se46m9i6kjod8sjg4dmug9umg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0vhQTfUHm48uw-5JJ9pazWwH0yxrxYKs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694185216444-21q693se46m9i6kjod8sjg4dmug9umg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
