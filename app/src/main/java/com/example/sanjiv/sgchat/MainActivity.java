@@ -1,6 +1,8 @@
 package com.example.sanjiv.sgchat;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +19,10 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private android.support.v7.widget.Toolbar toolbar;
+    private ViewPager viewPager;
+    private TabsPagerAdapter tabsPagerAdapter;
+    private TabLayout tab_layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SGChat");
+
+        viewPager = (ViewPager) findViewById(R.id.tab_pager);
+        tabsPagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(tabsPagerAdapter);
+        tab_layout = findViewById(R.id.main_nav_bar);
+
+        //connect the tabs and pageViewer
+        tab_layout.setupWithViewPager(viewPager);
     }
 
     @Override

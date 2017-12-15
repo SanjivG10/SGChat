@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2196F3"
     tools:context="com.example.sanjiv.sgchat.InitialActivity">
 
     <TextView
@@ -12,15 +13,26 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="LogIn Here"
+        android:text="@string/welcome_to_sgchat"
         android:textSize="24sp" />
 
     <Button
         android:id="@+id/create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_in_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:backgroundTint="#FF5722  "
+        android:text="@string/create_account" />
+
+    <Button
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
-        android:text="@string/create_account" />
+        android:layout_marginTop="46dp"
+        android:backgroundTint="#FFEB3B "
+        android:text="Sign In" />
 </RelativeLayout>
