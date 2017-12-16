@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                  comeToSignInPlace();
                  break;
              case R.id.account_settings:
+                 Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+                 startActivity(intent);
                  break;
              case R.id.all_users:
                  break;

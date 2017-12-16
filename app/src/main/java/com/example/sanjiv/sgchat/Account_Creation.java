@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class Account_Creation extends AppCompatActivity {
 
@@ -26,6 +31,7 @@ public class Account_Creation extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Toolbar create_account_toolbar;
     private ProgressDialog progressDialog;
+    private DatabaseReference mFirebaseDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,20 +73,47 @@ public class Account_Creation extends AppCompatActivity {
         });
     }
 
-    private void registerUser(String username, String email, String password) {
+    private void registerUser(final String username, String email, String password) {
 
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful())
                     {
-                        progressDialog.dismiss();
-                        Intent intent = new Intent(Account_Creation.this,MainActivity.class);
-                        //if users presses back , we dont go back to start Activity
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                        startActivity(intent);
-                        finish();
+
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                        String user_id = currentUser.getUid();
+                        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
+
+                        HashMap<String,String> user_values = new HashMap<>();
+                        user_values.put("name",username);
+                        user_values.put("status","Default SGChat App");
+                        user_values.put("image","default");
+                        user_values.put("thumbnail","default");
+
+                        mFirebaseDatabaseReference.setValue(user_values).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful())
+                                {
+                                    progressDialog.dismiss();
+                                    Intent intent = new Intent(Account_Creation.this,MainActivity.class);
+                                    //if users presses back , we dont go back to start Activity
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                else
+                                {
+                                    Toast.makeText(getApplicationContext()," Sorry, Error Occured ",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+
+
                     }
                     else
                     {
